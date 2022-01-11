@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		var tempValue = null;
+		var operationSelected = null;
+		function somethingClicked(para){
+			var IO = document.getElementById('InputOutput');
+            
+			if(para.value=="+" || para.value=="-" || para.value=="/" || para.value=="*" || para.value=="%" || para.value=="<" || para.value==">"){
+				tempValue = IO.value;
+				IO.value = "";
+				operationSelected = para.value;
+			}
+			else if(para.value=="="){
+				if(operationSelected!=null && tempValue!=null){
+					var ans = 0;
+					if(operationSelected=="+"){
+						ans = parseInt(tempValue)+parseInt(IO.value);
+					}
+					else if(operationSelected=="-"){
+						ans = parseInt(tempValue)-parseInt(IO.value);
+					}
+					else if(operationSelected=="*"){
+						ans = parseInt(tempValue)*parseInt(IO.value);
+					}
+					else if(operationSelected=="/"){
+						ans = parseInt(tempValue)/parseInt(IO.value);
+					}
+                    else if(operationSelected=="%"){
+						ans = parseFloat(tempValue)%parseFloat(IO.value);
+					}
+                    else if(operationSelected=="<"){
+						ans = parseFloat(tempValue)<parseFloat(IO.value);
+					}
+                    else if(operationSelected==">"){
+						ans = parseFloat(tempValue)>parseFloat(IO.value);
+					}
+					IO.value = ans;
+
+					operationSelected = null;
+					tempValue = null;
+				}
+			}
+			else{
+				IO.value += para.value;
+			}
+		}
+        function clr()
+			{
+			document.getElementById("InputOutput").value = ""
+			}
+	</script>
+	<style type="text/css">
+		input[type='button']{
+			width: 70px;
+            background-color: black;
+            font-size: 15px;
+            color: antiquewhite;
+            height: 45px;
+		}
+		input[type='text']{
+			width: 290px;
+            background-color: black;
+            height: auto;
+            padding: 160px 10px 10px 10px;
+            text-align: right;
+		}
+        #clear[type='button']
+        { 
+            width: 70px;
+            height: 45px;     
+            background-color: black;  
+            font-size: 15px;
+            color: red;
+        }  
+	</style>
+</head>
+<body>
+    <form name="form1">
+	<table align="center" style="background-color: black;">
+    <th style="background-color: black;">
+		<tr >
+			<td colspan="4"><input type="text" id="InputOutput" style="color: bisque ;"></td>
+		</tr>
+        <tr>
+			<td><input style="color: red;" type="button" onclick="clr()" value="C" id="clear"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value=">"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="%"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="<"></td>
+		</tr>
+		<tr>
+			<td><input type="button" onclick="somethingClicked(this)" value="7"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="8"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="9"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="-"></td>
+		</tr>
+		<tr>
+			<td><input type="button" onclick="somethingClicked(this)" value="4"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="5"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="6"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="+"></td>
+		</tr>
+		<tr>
+			<td><input type="button" onclick="somethingClicked(this)" value="1"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="2"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="3"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="*"></td>
+		</tr>
+		<tr>
+			<td><input type="button" onclick="somethingClicked(this)" value="."></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="0"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="/"></td>
+			<td><input type="button" onclick="somethingClicked(this)" value="="></td>
+		</tr>
+    </th>
+	</table>
+    </form>
+</body>
+</html>
